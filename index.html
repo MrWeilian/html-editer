@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>cookies</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <style type="text/css">
+        #ifr{
+            width: 320px;/* 滚动条宽度17px 页面宽度为320px htmlrem20px */
+            height: 568px;
+            position: absolute;
+            left: 22px;
+            top: 89px;
+        }
+        .phone{
+            position: relative;
+            width: 365px;
+            height: 750px;
+            /*-webkit-border-image:url(images/phone.png) 30 30 round;*/
+            background-image: url(images/phone5.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            /*margin: 30px;*/
+        }
+        #information{
+            padding: 30px 0 0 30px;
+        }
+        .form-group{
+            margin: 30px 0;
+        }
+        #divSelect{
+            display: none;
+            height: 130px;
+        }
+    </style>
+</head>
+<body>
+    <section class="container clearfix">
+        <fieldset>
+            <select class="Swselect form-control"></select>
+            <button id="add" type="button" class="btn btn-info btn-md">添加轮播</button>
+            <!-- <button id="drag" type="button" class="btn btn-warning btn-md">拖拽+缩放</button>
+            <button id="closeDrag" type="button" class="btn btn-danger btn-md">禁用拖拽</button>
+            <button id="star" type="button" class="btn btn-warning btn-md">拖拽排序</button>
+            <button id="stop" type="button" class="btn btn-danger btn-md">禁用排序</button> -->
+            <!-- <button type="button" id="drag" class="btn btn-danger btn-md">拖拽缩放</button> -->
+            <button id="addShake" type="button" class="btn btn-info btn-md">添加遮罩弹窗</button>
+            <button id="code" type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">finish</button>
+        </fieldset>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick=""><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+              </div>
+              <div class="modal-body" id="main">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="clearfix">
+            <div class="phone pull-left">
+                <iframe id="ifr" src="model.html" frameborder="0"></iframe>
+            </div>
+            <div id="information" class="col-lg-7 col-md-6 col-sm-5 col-xs-4 pull-right">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">元素块序号:</label>
+                    <input type="text" class="form-control message" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">元素块定位:</label>
+                    <input type="text" class="form-control message" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">是否有添加链接:</label>
+                    <input type="text" class="form-control message" readonly>
+                </div>
+                <div class="form-inline">
+                    <label for="exampleInputEmail1">层级:</label>
+                    <button type="button" class="btn btn-primary btn-md" onclick="delIn();">-</button>
+                    <input type="text" class="form-control message" readonly="">
+                    <button type="button" class="btn btn-primary btn-md" onclick="addIn();">+</button>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">添加图片:</label>
+                    <input type="text" class="form-control message" placeholder="img src" value="images/pmxl27_body1.jpg images/pmxl27_body2.jpg images/pmxl27_body3.jpg images/pmxl27_body4.jpg images/pmxl27_body5.jpg images/wsqz12_top.jpg">
+                    <button id="aImg" type="button" class="btn btn-primary btn-md">加图</button>
+                </div>
+                <!-- <button id="Sfixed" type="button" class="btn btn-primary btn-md">固定定位</button> -->
+                <!-- <button id="delete" type="button" class="btn btn-primary btn-md">删除块</button> -->
+                <!-- <button id="alink" type="button" class="btn btn-primary btn-md">图片块链接</button> -->
+                <!-- <button onclick="document.getElementById('ifr').contentWindow.dds();" type="button" class="btn btn-primary btn-md">开始制作</button> -->
+                <button id="bodyLink" type="button" class="btn btn-primary btn-md">全页面添加链接</button>
+                
+                
+                <button id="cleanUp" type="button" class="btn btn-primary btn-md">清空页面</button>
+                <div class="form-group">
+                    <button id="getDiv" type="button" class="btn btn-primary btn-md">查看元素块</button>
+                    <select id="divSelect" multiple class="form-control pull-right col-xs-10">
+                      
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/if_control.js"></script>
+    <script type="text/javascript" src="js/swConfig.js"></script>
+    <script type="text/javascript">
+        var iframe = $("#ifr")[0].contentWindow;
+        var isFix = true,isDivLink = true,isBodyLink = true,isCheck = true;
+            //是否定位  //div链接         //全局链接        //是否正在查看
+
+        var src = ["images/jxj5_banner1.jpg","images/jxj5_banner2.jpg","images/jxj5_banner3.jpg","images/jxj5_banner4.jpg"];
+        $(function(){
+
+            ifcongif();
+            selArr();
+            //加入轮播
+            $("#add").click(function(){
+                var selectV = $(".Swselect").val();
+                addSwiper(src,selectV);//参数1：图片地址数组，参数2：轮播样式
+            });
+
+            //添加图片
+            $("#aImg").click(function(){
+                var imgArr = $('.message').eq(4).val().split(" ");
+                addImg(imgArr);
+            });
+            
+            //获取代码
+            $("#code").click(function(){
+                var code = getCode();
+                $("#main").text(code);
+            });
+        });
+    </script>
+    
+</body>
+</html>

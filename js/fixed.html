@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="../css/public.css">
+	<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		function setS(){
+			// 响应式计算(rem为单位)
+	        var html= document.getElementsByTagName("html")[0];
+	        var clientWidth = html.getBoundingClientRect().width;
+	        if(clientWidth > 640){
+	        	// 大尺寸显示器居中640显示
+		    	html.style.fontSize = 40 + "px";
+		    }else{
+		    	html.style.fontSize = clientWidth / 16 + "px";
+	    	}
+	    }
+	    setS();
+	    window.addEventListener("resize",function(){
+			setS();
+		});
+	</script>
+</head>
+<body>
+	<section class="body">
+	
+	
+			<section class="content">
+			
+		<div class="block imgBox isfixed" position="悬浮" style="top: 0rem; position: fixed; z-index: 2; background-color: transparent; opacity: 1;"><img ondragstart="return false" src="http://img.1017sy.cn/xatd_image/2018020189005.gif"></div><div class="block rank imgBox" position="无定位" style="background-color: transparent; opacity: 1;"><img ondragstart="return false" src="http://img.1017sy.cn/wsqz_image/2018020189001.gif"></div><div class="block rank imgBox" position="无定位" style="background-color: transparent; opacity: 1;"><img ondragstart="return false" src="http://img.1017sy.cn/wsqz_image/2018020189002.jpg"></div><div class="block rank imgBox" position="无定位" style="background-color: transparent; opacity: 1;"><img ondragstart="return false" src="http://img.1017sy.cn/wsqz_image/2018020189003.gif"></div><div class="block rank imgBox" position="无定位" style="background-color: transparent; opacity: 1;"><img ondragstart="return false" src="http://img.1017sy.cn/wsqz_image/2018020189004.jpg"></div>
+
+
+
+		<footer class="footer block rank" position="无定位" style="background-color: transparent; opacity: 1;">底部位置参考块
+			<script class="fixScript">
+			$(function() {
+			var olArr = [],oFixL = 0;
+				$.each($(".isfixed"),function(){	
+					oFixL = $(this).offset().left / parseInt($("html").css("font-size"));
+					olArr.push(oFixL);
+				});
+			
+			function setFix(){
+				
+				var bL = $("body").offset().left / parseInt( $("html").css("font-size") ),oL = 0,nL = 0;
+				$.each($(".isfixed"),function(index){
+					oL = olArr[index];
+					console.log(oL,bL);
+					if(oL == bL){
+						nL = bL;
+					}else{
+						nL = bL + oL;
+					}
+					
+					
+					$(this).css("left","" +nL+ "rem");
+				});
+			}
+				setFix();
+				window.addEventListener("resize", function() { setFix(); });
+			});
+		</script>
+		</footer>
+
+
+
+
+		<!-- <div class="block imgBox isfixed download" position="悬浮" onclick="" style="z-index: 2; position: fixed; top: 0.182031rem; left: 10.45rem; width: 5.15rem; height: 1.85rem; background-color: transparent; opacity: 1;"><img ondragstart="return false" src="http://img.1017sy.cn/xatd_image/111.png"></div> --><div class="block imgBox drag download" position="可覆盖定位" onclick="" style="position: absolute; top: 15.382rem; left: 4.35rem; width: 7.5rem; height: 2.85rem; z-index: 1; background-color: transparent; opacity: 1;"><img ondragstart="return false" src="http://img.1017sy.cn/xatd_image/111.png"></div><div class="block imgBox drag download" position="可覆盖定位" onclick="" style="z-index: 1; position: absolute; top: 42.482rem; left: 4.75rem; width: 6.5rem; height: 1.95rem; background-color: transparent; opacity: 1;"><img ondragstart="return false" src="http://img.1017sy.cn/xatd_image/111.png"></div></section>
+				
+	</section>
+	
+	
+	
+	
+	<script type="text/javascript" src="../js/jd_lw_control.js"></script>
+	<script type="text/javascript" src="../js/package_config.js"></script>
+	<script type="text/javascript" src="../js/bottom_config.js"></script>
+	<script type="text/javascript" src="../js/ry_config.js"></script>
+	<script type="text/javascript" src="../js/bak.js"></script><!-- 留空JS -->
+	<script type="text/javascript">
+		$(function(){
+		
+			var Request = new Object();
+		    Request = GetRequest();
+		    change_bottom(Request['channel']);
+		    change_package_download_url(Request['type']);
+		    
+		})
+	</script>
+</body>
+</html>

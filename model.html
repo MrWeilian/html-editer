@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/public.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		function setS(){
+	        var html= document.getElementsByTagName("html")[0];
+	        // html.style.width = 320 + 'px';//控制操作面板宽度为320(防止滚动条宽度影响)
+	        var clientWidth = html.getBoundingClientRect().width;
+	        if(clientWidth > 640){
+		    	html.style.fontSize = 40 + "px";
+		    }else{
+		    	html.style.fontSize =  clientWidth / 16 + "px"; 
+	    	}
+	    	window.htmlFontSize = parseFloat(html.style.fontSize);
+	    }
+	    setS();
+	    window.addEventListener("resize",function(){
+			setS();
+		});
+	</script>
+	<style type="text/css">
+		 ::-webkit-scrollbar{
+			display:none;
+		} 
+		#contextMenu{
+			font-size: 13px;
+			font-family: "微软雅黑";
+			border: 1px solid #D4D3D3;
+			border-radius: 0.1rem;
+			color: #303030;
+			width: 8rem;
+			padding: 0.28rem 0;
+			background-color: #fff;
+			text-align: left;
+			display: none;
+			position: absolute;
+			left: 50%;
+			margin-left: -4rem;
+			z-index: 888888888;
+			box-shadow: 0.1rem 0.1rem 0.1rem #737373;
+		}
+		#contextMenu .citem{
+			padding: 0.18rem 0 0.18rem 0.5rem;
+		}
+		#contextMenu .citem:hover{
+			background-color: #D1D1D1;
+			cursor: pointer;
+		}
+		.block:hover{
+			animation: scale .3s ease;
+		}
+		.footer{
+			background-color: lightgreen;
+			text-align: center;
+		}
+		@keyframes scale {
+			0%{
+				transform: scale(1);
+			}
+			50%{
+				transform: scale(0.96);
+			}
+			100%{
+				transform: scale(1);
+			}
+		}
+	</style>
+</head>
+<body>	
+	<style type="text/css">
+	#mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            top: 0px;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        #dialog {
+            position: absolute;
+            width: 30%;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: 25%;
+        }
+        #dialog img{
+            width: 100%;
+        }</style>
+		<script type="text/javascript">
+			$(function(){
+				// 弹窗
+		    if($("#mask").length > 0){
+		        pushHistory();
+		        var noback = true;
+		        setTimeout(function() {
+		            var scrolltop = $(document).scrollTop();
+		            $('#dialog').css('margin-top',scrolltop);
+		            window.addEventListener("popstate", function(e) {
+		                if ( noback ) {
+
+		                    $('#mask').css('display','block');
+		                } else {
+		                    window.history.go(-1);
+		                }
+		            }, false);
+		        }, 200);  
+		    }
+		    $("#dialog").on('click', function(e) {
+		        e.stopPropagation();
+		    })
+		    $(document).on('click', function() {
+		        $('#mask').css('display','none');
+		        noback = false;
+		    })
+		    function pushHistory() {
+		        var state = {
+		            url: "#"
+		        };
+		        window.history.pushState(state, "#");
+		    }
+			})
+		</script>
+		<div id="mask" style="display: none;">
+            <div id="dialog" style="">
+                <a href="" class="download" onclick>
+                    <img class="tcPic" src="http://img.1017sy.cn/zml_image/2018053188037.png">
+                </a>
+            </div>
+        </div>
+	<div id="shake" style="display: none;">
+		<style type="text/css">
+			#shake{
+				width: 16rem; height: 100%; position: fixed; z-index: 888888888; opacity: 0.9; top: 0;background: #303030;
+			}
+			.model-box{
+				 animation: init .3s linear;
+				perspective: 1000;width: 8rem; height: 10rem; position: fixed; top: 50%; margin-top: -5rem; padding: 0; transition: 1s;
+			}
+			.model{
+				transition: 1s; transform-style: preserve-3d; position: relative; width: 100%; height: 100%;
+			}
+			.front,.back{
+				width: 100%; height: 100%; position: absolute; backface-visibility: hidden;
+				
+			}
+			.front{
+				z-index: 2;
+				/*transform: rotateY(180deg);*/
+			}
+			.back{
+				transform: rotateY(180deg);
+			}
+			@keyframes init{
+				0%{
+					transform: scale(1);
+				}
+				50%{
+					transform: scale(0.9);
+				}
+				100%{
+					transform: scale(1);
+				}
+			}
+		</style>
+		<div class="model-box">
+			<span class="close-shake" style="display: block; position: absolute; font-size: 1rem; color: #303030; top: 0rem; right: 0rem; z-index: 8; cursor: pointer; width: 1rem; height: 1rem;"></span>
+			<div class="model">
+				<div class="front">
+					<img class="" src="http://img.1017sy.cn/zml_image/2018110688036.png" style="width: 100%; height: 100%;">
+					<a class="change download" onclick>
+						<img class="" src="http://img.1017sy.cn/xatd_image/111.png" style="width: 5rem; height: auto; position: absolute; left: 1.6rem; top: 8.2rem;">
+					</a>
+				</div>
+				<div class="back">
+					<a class="download">
+						<img src="http://img.1017sy.cn/jlj_image/2018042088014.jpg" style="width: 100%; height: 100%;">
+					</a>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				function setS(){
+			        var html= document.getElementsByTagName("html")[0];
+			        // html.style.width = 320 + 'px';//控制操作面板宽度为320(防止滚动条宽度影响)
+			        var clientWidth = html.getBoundingClientRect().width;
+			        if(clientWidth > 640){
+				    	html.style.fontSize = 40 + "px";
+				    }else{
+				    	html.style.fontSize =  clientWidth / 16 + "px"; 
+			    	}
+			    	window.htmlFontSize = parseFloat(html.style.fontSize);
+			    }
+			    setS();
+			    window.addEventListener("resize",function(){
+					setS();
+				});
+	
+				
+				function shakeLeft(){
+					var Cwidth = $(window).width(),
+						Swidth = $("#shake").width(),
+						middle = ( Cwidth - Swidth )/2;
+	
+					$("#shake").css("left",middle);
+					$("#shake .model-box").css("left",""+ parseFloat( 4 + middle/htmlFontSize ) +"rem");
+				}
+				shakeLeft();
+				window.addEventListener("resize", function() { 
+					shakeLeft(); 
+				});
+	
+				$(document).on("click",".change",function(){
+					$("#shake").remove();
+					// $(".model").css( "transform","rotateY(180deg)" );
+					// $(".back").css( "transform","rotateY(-180deg)" );
+				});
+				$(document).on("click",".close-shake",function(){
+					$("#shake").remove();
+				});
+	
+	
+				// 弹窗
+				setTimeout(function(){
+					$("#shake").css("display","block");
+				},3000);
+			});
+		</script>
+	</div>
+		
+
+	<section class="body">
+			<section class="content">
+			<footer class="footer block rank" position="无定位">底部位置参考块</footer>
+		</section>
+			</section>
+	
+
+	<div id="contextMenu" style="top: 3.9rem; display: none;">
+		<ul>
+			<li class="citem" onclick="Rdrag();">开启拖拽调整</li>
+			<li class="citem" onclick="Rfix();">设为悬浮状态</li>
+			<li class="citem" onclick="Bdad();">恢复排序</li>
+			<li class="citem" onclick="Ddiv();">删除图片块</li>
+			<li class="citem" onclick="Slink();">添加下载链接</li>
+			<li class="citem" onclick="Dlink();">取消下载链接</li>
+			<li class="citem" onclick="Sanimation('scale');">缩放动画/暂停</li>
+			<li class="citem" onclick="Sanimation('translateY');">浮动动画/暂停</li>
+			<li class="citem" onclick="Sanimation('translateX');">水平动画/暂停</li>
+		</ul>
+	</div>	
+
+	<span class="tips" style="display: block;width: 6rem; background-color: #fff; text-align: center; border: 1px solid #8C8C8C; z-index: 99999999; border-radius: 3px; position: absolute; left: 50%; margin-left: -3rem; display: none;">添加链接成功</span>
+	<span class="Dtips" style="display: block;width: 6rem; background-color: #fff; text-align: center; border: 1px solid #8C8C8C; z-index: 99999999; border-radius: 3px; position: absolute; left: 50%; margin-left: -3rem; display: none;">取消链接成功</span>
+
+
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/drag.js"></script>
+	<!-- <script type="text/javascript" src="js/jd_lw_control.js"></script>
+	<script type="text/javascript" src="js/package_config.js"></script>
+	<script type="text/javascript" src="js/bottom_config.js"></script>
+	<script type="text/javascript" src="js/ry_config.js"></script> -->
+	<script type="text/javascript" src="js/ddsort.js"></script>
+	<script type="text/javascript" src="js/model_control.js"></script>
+	<script type="text/javascript">
+
+		var oldIndex;//获取点击块前一次点击的序号
+		var Dindex;//获取点击块的序号
+		var tipTop = 0;//tips高度与右键菜单高度一致
+		var oZindex;//获取元素拖拽前zindex
+		var oldZindex;
+
+		/*$(function(){
+
+			var Request = new Object();
+		    Request = GetRequest();
+		    change_bottom(Request['channel']);
+		    change_package_download_url(Request['type']);
+
+		})*/
+
+		
+
+	</script>
+</body>
+</html>

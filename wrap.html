@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/public.css">
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		function setS(){
+	        var html= document.getElementsByTagName("html")[0];
+	        var clientWidth = html.getBoundingClientRect().width;
+	        if(clientWidth > 640){
+		    	html.style.fontSize = 40 + "px";
+		    }else{
+		    	html.style.fontSize = clientWidth / 16 + "px"; 
+	    	} 
+	    }
+	    setS();
+	    window.addEventListener("resize",function(){
+			setS();
+		});
+	</script>
+</head>
+<body>
+	<section class="body">
+		<section class="active">
+			<style type="text/css">
+				.active{
+					padding: 0.8rem 0.5rem;
+				}
+				h1{
+					text-align: center;
+					font-size: 1rem;
+					margin-bottom: 0.3rem;
+				}
+				p{
+					font-size: 0.7rem;
+				}
+				.white{
+					width: 100%;
+					height: 1rem;
+				}
+				.b{
+					font-weight: bold;
+				}
+				img{
+					width: 15rem;
+				}
+			</style>
+			<h1>线下回馈活动</h1>
+			<hr>
+			<p>活动形式与时间：</p>
+			<p>1.1.	单周返利形式：以周为单位，单周累充。每周六到下周四为一个活动周期（烟花活动日的充值不计入）；</p>
+			<p>2.	周五单日返利形式：以周五累充一天进行单日返利；（烟花活动日的充值不计入）<br>
+			活动参与范围：开服7天以上的服务器玩家<br>
+			活动奖励内容：返利券、绑元、道具
+			</p>
+			<div class="white"></div>
+			<p>参与活动的条件：</p>
+			<p>1.	单周返利形式：玩家周六到下周四单周累充1000RMB以上，即可参与返利活动；<br>
+			2.周五单日返利形式，玩家在周五当日充值8000RMB以上即可参与活动（活动具体奖励请咨询客服）；
+			</p>
+			<div class="white"></div>
+			<p>返利券使用方式：玩家收到邮件中的返利券之后，可以点击使用去游戏内的返利商城物品兑换自己想要的物品；<br>
+			返利券计算公式：返利券数=单周累充金额*返利比例*10%（不同金额的返利比例请咨询客服）
+			</p>
+			<div class="white"></div>
+			<p>活动规则：</p>
+			<p>1.	玩家在充值前或者充值后3天之内需要<span class="b">主动添加客服QQ</span>，说明登记返利信息，客服申请当周的返利奖励，超过申请期限一概不给予申请；<br>
+			例如：第一种.玩家想申请10月24日-29日的单周奖励，请在10月21日-11月2日之间过来和客服登记，逾期不候；第二种：玩家想参与10月23日周五单日累充活动，请在10月21日-10月26日之间和客服登记，逾期不候；<br>
+			（玩家在客服登记返利信息后，当日申请的奖励会在3日内审批发放，如逾期没有收到，请及时询问客服进度；）
+			</p>
+			<p>2.	玩家最终收到的返利奖励以邮件内收到的数量为准；玩家最终收到的返利券，工作人员会按本活动公示中的返利公式进行计算并且申请，如果申请奖励内有道具礼包，请提前和客服确认；如有收到奖励后出现疑问，请咨询客服人员了解；
+			</p>
+			<p>奖池特别说明：<br>
+			A.周五单日活动的活动具体奖励请咨询客服；<br>
+			B.单周活动的返利商城中可兑换的物品以及兑换所需的返利券：<br>
+			（游戏道具请以游戏内的实际显示为准）
+			</p>
+			<div class="white"></div>
+			<img src="http://img.1017sy.cn/zml_image/2018112088001.png">	
+			
+			
+		</section>
+		
+	</section>
+
+
+
+	
+	<script type="text/javascript" src="js/jd_lw_control.js"></script>
+	<script type="text/javascript" src="js/package_config.js"></script>
+	<script type="text/javascript" src="js/bottom_config.js"></script>
+	<script type="text/javascript" src="js/ry_config.js"></script>
+	<script type="text/javascript" src="js/bak.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			var Request = new Object();
+		    Request = GetRequest();
+		    change_bottom(Request['channel']);
+		    change_package_download_url(Request['type']);
+
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="css/public.css">
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		function setS(){
+	        var html= document.getElementsByTagName("html")[0];
+	        var clientWidth = html.getBoundingClientRect().width;
+	        if(clientWidth > 640){
+		    	html.style.fontSize = 40 + "px";
+		    }else{
+		    	html.style.fontSize = clientWidth / 16 + "px"; 
+	    	} 
+	    }
+	    setS();
+	    window.addEventListener("resize",function(){
+			setS();
+		});
+	</script>
+	<style>
+    .swiper-container {
+        width: 16rem;
+        height: 12rem;
+    }
+    .swiper-slide {
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+</head>
+<body>
+	<section class="body">
+		<!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <div class="swiper-slide">Slide 7</div>
+            <div class="swiper-slide">Slide 8</div>
+            <div class="swiper-slide">Slide 9</div>
+            <div class="swiper-slide">Slide 10</div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+	</section>
+
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/jd_lw_control.js"></script>
+	<script type="text/javascript" src="js/package_config.js"></script>
+	<script type="text/javascript" src="js/bottom_config.js"></script>
+	<script type="text/javascript" src="js/ry_config.js"></script>
+	<script type="text/javascript" src="js/bak.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			var Request = new Object();
+		    Request = GetRequest();
+		    change_bottom(Request['channel']);
+		    change_package_download_url(Request['type']);
+
+		    var swiper = new Swiper('.swiper-container', {
+		        pagination: '.swiper-pagination',
+		        slidesPerView: 2,
+		        paginationClickable: true,
+		        spaceBetween: 30,
+		        loop: true,
+		        autoplay: 3000,
+		        autoplayDisableOnInteraction : false,
+		    });
+
+		})
+	</script>
+</body>
+</html>
